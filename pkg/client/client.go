@@ -11,7 +11,7 @@ import (
 )
 
 // SpreedlyAPIURL is a const
-const SpreedlyAPIURL = "https://core.spreedly.com/v1/"
+const SpreedlyAPIURL = "https://core.spreedly.com/v1"
 
 // Client is the client API used to communicate with Spreedly
 type Client struct {
@@ -33,7 +33,7 @@ func (c *Client) WriteRequest(method string, path string, data []byte) (*http.Re
 
 	body = bytes.NewReader(data)
 
-	url, err := url.Parse(SpreedlyAPIURL + path)
+	url, err := url.Parse(c.BaseURL.String() + path)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -63,8 +63,7 @@ func (c *Client) WriteRequest(method string, path string, data []byte) (*http.Re
 func (c *Client) ReadRequest(method string, path string) (*http.Response, error) {
 	var body io.Reader
 
-	url, err := url.Parse(SpreedlyAPIURL + path)
-	fmt.Println(url.String())
+	url, err := url.Parse(c.BaseURL.String() + path)
 	if err != nil {
 		fmt.Println(err)
 	}

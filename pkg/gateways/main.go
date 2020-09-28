@@ -18,7 +18,7 @@ import (
 
 // Create sends a POST to `/v1/gateways` for creation
 func Create(client *client.Client, g Gateway) *GatewayJSON {
-	url := "gateways.json"
+	url := "/gateways.json"
 	gbyte, _ := json.Marshal(g)
 	resp, err := client.WriteRequest(http.MethodPost, url, gbyte)
 
@@ -37,7 +37,7 @@ func Create(client *client.Client, g Gateway) *GatewayJSON {
 
 // Get ...
 func Get(client *client.Client, token string) *GatewayJSON {
-	url := "gateways/" + token + ".json"
+	url := "/gateways/" + token + ".json"
 
 	resp, err := client.ReadRequest(http.MethodGet, url)
 	if err != nil {
