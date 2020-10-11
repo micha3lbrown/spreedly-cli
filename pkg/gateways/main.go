@@ -58,20 +58,23 @@ func Get(client *client.Client, token string) *GatewayJSON {
 
 // List ....
 func List(client *client.Client) *GatewayList {
-	url := "gateways.json"
+	url := "/gateways.json"
 
 	resp, err := client.ReadRequest(http.MethodGet, url)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println("List Gateway Status: ", resp.Status)
 	var ng GatewayList
 	body, _ := ioutil.ReadAll(resp.Body)
 
 	json.Unmarshal(body, &ng)
-	// json.NewDecoder(resp.Body).Decode(&ng)
 
-	fmt.Println("Get Gateway: ", len(ng.Gateways))
+	fmt.Println("Total Gateways: ", len(ng.Gateways))
+
+	for _, g := range ng.Gateways {
+		fmt.Println("Token:\t", g.Token, "\tGatewayType:\t", g.GatewayType)
+	}
+
 	return &ng
 }
