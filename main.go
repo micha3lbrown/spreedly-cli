@@ -6,14 +6,10 @@ import (
 	"os"
 
 	"github.com/micha3lbrown/spreedly-cli/pkg/client"
-	"github.com/micha3lbrown/spreedly-cli/pkg/gateways"
+	"github.com/micha3lbrown/spreedly-cli/pkg/gateway"
 )
 
 func main() {
-	// var g gateways.Gateway
-	// g := &gateways.Gateway{
-	// 	GatewayType: "test",
-	// }
 	baseURL, err := url.Parse(client.SpreedlyAPIURL)
 	if err != nil {
 		fmt.Println(err)
@@ -31,7 +27,12 @@ func main() {
 	// ng := gateways.Create(client, *g)
 	// fmt.Println(ng.Token)
 	// gateways.Get(client, ng.Token)
-	gateways.List(client)
+	gateway.List(client)
+
+	// var p pm.PaymentMethod
+	// p := pm.Get(client, "blah blah blah")
+	// p := pm.List(client)
+	// fmt.Println(p)
 
 }
 

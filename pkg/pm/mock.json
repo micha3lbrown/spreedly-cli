@@ -1,0 +1,34 @@
+{
+  "payment_method": {
+    "credit_card": {
+      "first_name": "Joe",
+      "last_name": "Jones",
+      "number": "4111111111111111",
+      "verification_value": "423",
+      "month": "3",
+      "year": "2032",
+      "company": "Acme Inc.",
+      "address1": "33 Lane Road",
+      "address2": "Apartment 4",
+      "city": "Wanaque",
+      "state": "NJ",
+      "zip": "31331",
+      "country": "US",
+      "phone_number": "919.331.3313",
+      "shipping_address1": "33 Lane Road",
+      "shipping_address2": "Apartment 4",
+      "shipping_city": "Wanaque",
+      "shipping_state": "NJ",
+      "shipping_zip": "31331",
+      "shipping_country": "US",
+      "shipping_phone_number": "919.331.3313",
+      "test": true
+    },
+    "email": "joey@example.com",
+    "metadata": {
+      "key": "string value",
+      "another_key": 123,
+      "final_key": true
+    }
+  }
+}
