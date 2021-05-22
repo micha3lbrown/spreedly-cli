@@ -2,6 +2,7 @@ package client
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"net"
@@ -11,7 +12,7 @@ import (
 )
 
 // SpreedlyAPIURL is a const
-const SpreedlyAPIURL = "https://core.spreedly.com/v1"
+const SpreedlyAPIURL = "https://core-canary-02.us-east-1.spreedly.internal/v1"
 
 // Client is the client API used to communicate with Spreedly
 type Client struct {
@@ -91,11 +92,16 @@ func (c *Client) ReadRequest(method string, path string) (*http.Response, error)
 func newHTTPClient() *http.Client {
 	var httpTransport *http.Transport
 
+	config := &tls.Config{
+		InsecureSkipVerify: true,
+	}
+
 	httpTransport = &http.Transport{
 		DialContext: (&net.Dialer{
 			Timeout:   5 * time.Second,
 			KeepAlive: 60 * time.Second,
 		}).DialContext,
+		TLSClientConfig: config,
 	}
 
 	return &http.Client{
